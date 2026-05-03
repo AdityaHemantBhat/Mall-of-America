@@ -1,5 +1,4 @@
 import { siteData } from "@/data/content";
-import { AnimatedText } from "@/components/AnimatedText";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -70,8 +69,8 @@ export function Dining() {
             trigger: containerRef.current,
             start: "top bottom",
             end: "bottom top",
-            scrub: true
-          }
+            scrub: true,
+          },
         });
       }
     }, containerRef);
@@ -79,28 +78,38 @@ export function Dining() {
   }, []);
 
   return (
-    <section id="dining" ref={containerRef} className="relative w-full min-h-screen bg-moa-black grid lg:grid-cols-2">
+    <section
+      id="dining"
+      ref={containerRef}
+      className="relative w-full min-h-screen bg-moa-black grid lg:grid-cols-2"
+    >
       <div className="relative h-[50vh] lg:h-auto lg:sticky lg:top-0 lg:h-screen w-full overflow-hidden border-r border-white/5">
         <div className="absolute inset-0 z-10 bg-black/30" />
-        <img loading="lazy"
+        <img
+          loading="lazy"
           ref={leftImageRef}
           src="/images/moa_gastronomy_fine_dining_1777708342915.png"
           className="absolute inset-0 w-full h-[120%] -top-[10%] object-cover"
           alt="Dining Experience"
-          loading="lazy"
         />
         <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none p-12">
           <h2 className="font-display text-6xl md:text-8xl text-white text-center italic drop-shadow-2xl">
-            Taste <br /><span className="text-moa-gold">The Destination.</span>
+            Taste <br />
+            <span className="text-moa-gold">The Destination.</span>
           </h2>
         </div>
       </div>
 
       <div className="py-24 px-6 lg:px-16 flex flex-col justify-center">
         <div className="max-w-xl mx-auto w-full">
-          <h3 className="text-3xl font-display text-white mb-6">Culinary Scale</h3>
+          <h3 className="text-3xl font-display text-white mb-6">
+            Culinary Scale
+          </h3>
           <p className="text-white/60 font-light leading-relaxed mb-16">
-            Dining at Mall of America is not an amenity—it is an anchor category. We house over 50 restaurants ranging from fast-premium to elevated dining, moving millions of covers annually and capturing massive post-retail dwell time.
+            Dining at Mall of America is not an amenity—it is an anchor
+            category. We house over 50 restaurants ranging from fast-premium to
+            elevated dining, moving millions of covers annually and capturing
+            massive post-retail dwell time.
           </p>
 
           <div className="grid gap-6 perspective-1000">
@@ -110,8 +119,12 @@ export function Dining() {
           </div>
 
           <div className="mt-24 pt-12 border-t border-white/10 text-center">
-            <span className="font-display text-4xl text-white block mb-4">50+ Dining Concepts</span>
-            <p className="text-sm font-bold uppercase tracking-[0.3em] text-moa-gold">Every Cuisine. Every Occasion.</p>
+            <span className="font-display text-4xl text-white block mb-4">
+              50+ Dining Concepts
+            </span>
+            <p className="text-sm font-bold uppercase tracking-[0.3em] text-moa-gold">
+              Every Cuisine. Every Occasion.
+            </p>
           </div>
         </div>
       </div>

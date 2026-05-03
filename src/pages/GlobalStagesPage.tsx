@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { siteData } from "@/data/content";
 import { PageHero } from "@/components/PageHero";
 import { Footer } from "@/sections/Footer";
-import { motion } from "framer-motion";
+import { motion, cubicBezier } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -85,7 +85,11 @@ const fade = {
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      delay: i * 0.08,
+      duration: 0.6,
+      ease: cubicBezier(0.22, 1, 0.36, 1),
+    },
   }),
 };
 
@@ -109,7 +113,7 @@ export function GlobalStagesPage() {
       <PageHero {...siteData.pageHeroes.globalStages} />
 
       <section className="py-24 md:py-40">
-        <div className="max-w-screen-xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="mb-20">
             <span className="text-moa-gold text-[10px] font-mono tracking-[0.5em] uppercase mb-4 block">
               Performance Spaces
@@ -138,41 +142,65 @@ export function GlobalStagesPage() {
                   <h3 className="font-display text-4xl md:text-6xl text-white uppercase tracking-tighter mb-4 leading-none">
                     {v.name}
                   </h3>
-                  <p className="text-white/40 text-base italic mb-8">{v.tagline}</p>
+                  <p className="text-white/40 text-base italic mb-8">
+                    {v.tagline}
+                  </p>
 
                   <div className="flex gap-12 mb-10 border-t border-white/5 pt-8">
                     <div>
-                      <div className="text-white text-3xl font-display mb-1">{v.capacity}</div>
-                      <div className="text-white/20 text-[9px] font-mono uppercase tracking-widest">Capacity</div>
+                      <div className="text-white text-3xl font-display mb-1">
+                        {v.capacity}
+                      </div>
+                      <div className="text-white/20 text-[9px] font-mono uppercase tracking-widest">
+                        Capacity
+                      </div>
                     </div>
                     <div>
-                      <div className="text-white text-3xl font-display mb-1">{v.sqft}</div>
-                      <div className="text-white/20 text-[9px] font-mono uppercase tracking-widest">Floor Area</div>
+                      <div className="text-white text-3xl font-display mb-1">
+                        {v.sqft}
+                      </div>
+                      <div className="text-white/20 text-[9px] font-mono uppercase tracking-widest">
+                        Floor Area
+                      </div>
                     </div>
                   </div>
 
-                  <p className="text-white/50 text-sm leading-relaxed mb-10">{v.description}</p>
+                  <p className="text-white/50 text-sm leading-relaxed mb-10">
+                    {v.description}
+                  </p>
 
                   <ul className="space-y-3">
                     {v.specs.map((s, j) => (
-                      <li key={j} className="flex items-center gap-4 text-white/30 text-sm">
-                        <span className="w-4 h-px bg-moa-gold flex-shrink-0" />
+                      <li
+                        key={j}
+                        className="flex items-center gap-4 text-white/30 text-sm"
+                      >
+                        <span className="w-4 h-px bg-moa-gold shrink-0" />
                         {s}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className={`border border-white/5 rounded-2xl p-10 bg-white/[0.02] ${i % 2 !== 0 ? "lg:order-1" : ""}`}>
+                <div
+                  className={`border border-white/5 rounded-2xl p-10 bg-white/2 ${i % 2 !== 0 ? "lg:order-1" : ""}`}
+                >
                   <div className="space-y-6">
                     <div className="text-moa-gold font-mono text-[10px] tracking-widest uppercase mb-6 opacity-60">
                       Technical Overview
                     </div>
                     {v.specs.map((s, j) => (
-                      <div key={j} className="border-b border-white/5 pb-5 last:border-0 last:pb-0">
+                      <div
+                        key={j}
+                        className="border-b border-white/5 pb-5 last:border-0 last:pb-0"
+                      >
                         <div className="flex items-start gap-4">
-                          <span className="text-moa-gold font-mono text-xs mt-0.5">{String(j + 1).padStart(2, "0")}.</span>
-                          <span className="text-white/60 text-sm leading-relaxed">{s}</span>
+                          <span className="text-moa-gold font-mono text-xs mt-0.5">
+                            {String(j + 1).padStart(2, "0")}.
+                          </span>
+                          <span className="text-white/60 text-sm leading-relaxed">
+                            {s}
+                          </span>
                         </div>
                       </div>
                     ))}
@@ -185,7 +213,7 @@ export function GlobalStagesPage() {
       </section>
 
       <section className="py-24 md:py-40 border-t border-white/5 bg-[#040404]">
-        <div className="max-w-screen-xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div>
               <span className="text-moa-gold text-[10px] font-mono tracking-[0.5em] uppercase mb-4 block">
@@ -196,7 +224,8 @@ export function GlobalStagesPage() {
               </h2>
             </div>
             <p className="text-white/30 text-sm font-light max-w-sm leading-relaxed">
-              Every event below ran on our infrastructure. We don't chase headlines — we build the stage they're made on.
+              Every event below ran on our infrastructure. We don't chase
+              headlines — we build the stage they're made on.
             </p>
           </div>
 
@@ -212,7 +241,7 @@ export function GlobalStagesPage() {
             {history.map((evt, i) => (
               <div
                 key={i}
-                className="history-row grid grid-cols-12 gap-4 items-start py-7 border-b border-white/[0.04] group hover:bg-white/[0.02] transition-colors rounded-lg px-1 -mx-1"
+                className="history-row grid grid-cols-12 gap-4 items-start py-7 border-b border-white/4 group hover:bg-white/2 transition-colors rounded-lg px-1 -mx-1"
               >
                 <span className="col-span-1 text-moa-gold font-mono text-[11px] mt-0.5">
                   {String(i + 1).padStart(2, "0")}
@@ -228,7 +257,9 @@ export function GlobalStagesPage() {
                   </span>
                 </div>
                 <div className="col-span-1">
-                  <span className="text-white/60 text-sm font-light">{evt.attendance}</span>
+                  <span className="text-white/60 text-sm font-light">
+                    {evt.attendance}
+                  </span>
                 </div>
                 <div className="col-span-5">
                   <p className="text-white/30 text-sm font-light leading-relaxed group-hover:text-white/50 transition-colors">
@@ -251,7 +282,9 @@ export function GlobalStagesPage() {
             <span className="text-moa-gold italic">Event.</span>
           </h2>
           <p className="text-white/40 text-lg font-light max-w-xl mx-auto mb-16 leading-relaxed">
-            From an intimate 500-person product drop to a full-scale expo for 12,000 — our production crew handles the details so you can focus on the moment.
+            From an intimate 500-person product drop to a full-scale expo for
+            12,000 — our production crew handles the details so you can focus on
+            the moment.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <button className="px-12 py-5 bg-moa-gold text-black text-[10px] font-bold tracking-[0.3em] uppercase rounded-full hover:bg-white transition-all shadow-[0_0_30px_rgba(212,175,55,0.15)]">

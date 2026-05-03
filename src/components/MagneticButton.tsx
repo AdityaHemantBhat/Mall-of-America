@@ -5,13 +5,22 @@ interface MagneticButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
   children: React.ReactNode;
 }
 
-export function MagneticButton({ children, className, ...props }: MagneticButtonProps) {
+export function MagneticButton({
+  children,
+  className,
+  ...props
+}: MagneticButtonProps) {
   const ref = useRef<HTMLButtonElement>(null);
-  
+
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const springConfig = { type: "spring", stiffness: 150, damping: 15, mass: 0.1 };
+  const springConfig = {
+    type: "spring",
+    stiffness: 150,
+    damping: 15,
+    mass: 0.1,
+  };
   const springX = useSpring(x, springConfig);
   const springY = useSpring(y, springConfig);
 
@@ -35,9 +44,9 @@ export function MagneticButton({ children, className, ...props }: MagneticButton
       ref={ref}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
-      style={{ x: springX, y: springY }}
+      style={{ x: springX, y: springY } as any}
       className={className}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </motion.button>

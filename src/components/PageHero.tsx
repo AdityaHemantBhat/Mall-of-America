@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AnimatedText } from "@/components/AnimatedText";
@@ -58,7 +57,8 @@ export function PageHero({
             className="w-full h-[150%] -top-[25%] absolute origin-center object-cover opacity-60 mix-blend-screen"
           />
         ) : (
-          <img loading="lazy"
+          <img
+            loading="lazy"
             ref={mediaRef as React.RefObject<HTMLImageElement>}
             src={imageUrl}
             alt={title}
