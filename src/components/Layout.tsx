@@ -335,7 +335,7 @@ export function Layout({
         {children}
       </main>
 
-      <div className="fixed bottom-12 right-6 lg:right-12 z-40 hidden md:block">
+      <div className="fixed bottom-12 right-6 lg:right-12 z-40">
         <BackgroundMusic />
       </div>
 

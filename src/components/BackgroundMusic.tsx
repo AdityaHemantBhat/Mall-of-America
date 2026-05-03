@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { Volume2, VolumeX } from "lucide-react";
 
 export function BackgroundMusic() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -45,25 +46,24 @@ export function BackgroundMusic() {
     <div className="flex items-center space-x-4 pointer-events-auto">
       <button
         onClick={toggleMusic}
-        className="group flex items-center space-x-3 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full hover:border-moa-gold transition-all duration-500"
+        className="group flex items-center justify-center space-x-0 md:space-x-3 bg-white/5 backdrop-blur-md border border-white/10 p-3 md:px-4 md:py-2 rounded-full hover:border-moa-gold transition-all duration-500"
       >
-        <div className="flex items-end space-x-1 h-3 w-6">
-          {[...Array(5)].map((_, i) => (
-            <motion.div
-              key={i}
-              animate={isPlaying ? { height: [4, 16, 8, 12, 4] } : { height: 4 }}
-              transition={{
-                duration: 0.8,
-                repeat: Infinity,
-                delay: i * 0.1,
-                ease: "linear"
-              }}
-              className={`w-0.5 ${isPlaying ? 'bg-moa-gold' : 'bg-white/20'}`}
-            />
-          ))}
-        </div>
+        {isMuted ? (
+          <VolumeX size={18} className="text-white/40 group-hover:text-white transition-colors" />
+        ) : (
+          <div className="relative">
+             <Volume2 size={18} className="text-moa-gold" />
+             {isPlaying && (
+               <motion.div 
+                 animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                 transition={{ duration: 2, repeat: Infinity }}
+                 className="absolute inset-0 bg-moa-gold/20 rounded-full"
+               />
+             )}
+          </div>
+        )}
 
-        <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-white/60 group-hover:text-white transition-colors">
+        <span className="hidden md:block text-[9px] font-bold tracking-[0.2em] uppercase text-white/60 group-hover:text-white transition-colors">
           {isMuted ? "Audio: Muted" : "Audio: On"}
         </span>
       </button>
